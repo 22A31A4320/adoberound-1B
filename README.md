@@ -80,29 +80,6 @@ A structured JSON file with:
     }
   ]
 }
-🛠 Technical Approach
-🔍 Step 1: Document Structure Extraction
-We reuse logic from Round 1A to parse PDFs using pdfminer.six. It extracts headings based on:
-
-Font size
-
-Boldness
-
-Capitalization
-
-Numeric prefixes (e.g., "1.", "1.1")
-
-Each heading is classified as H1, H2, or H3 and recorded with its page number.
-
-🔍 Step 2: Keyword Extraction
-From the "job-to-be-done" input, we use regex to extract keywords — ignoring stopwords and punctuation. These keywords are used to match against the text of each heading in the document outline.
-
-🔍 Step 3: Relevance Scoring
-Each heading is scored based on how many job-specific keywords it contains. We use simple keyword overlap for ranking. In case of ties, headings higher in the document are preferred. This makes the solution lightweight and compliant with runtime limits.
-
-🔍 Step 4: Subsection Stubs
-For each highly relevant heading, we generate a placeholder "refined snippet." This can be expanded into full paragraph-level summaries in Round 2 using techniques like chunk-based NLP summarization.
-
 🧾 File Structure
 graphql
 Copy
